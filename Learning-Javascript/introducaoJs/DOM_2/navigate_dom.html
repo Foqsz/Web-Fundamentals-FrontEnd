@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <h1>Teste DOM</h1>
+
+    <div class="container">
+      <p>teste 1</p>
+      <p>lorem <a href="#" class="ref">Oi</a> .</p>
+      <p>teste 2</p>
+
+      <h2>Lista</h2>
+      <ul>
+        <li>item 1</li>
+        <li>item 2
+            <ul>
+            <li>item 2a</li>
+            <li>item 2b</li>
+            <li>item 2c</li>
+            </ul>
+        </li>
+        <li>item <a href="#" class="ref">oi</a></li>
+      </ul>
+    </div>
+    <script>
+        console.log(document.body);
+        console.log(document.body.parentElement);
+        console.log(document.body.parentNode);
+        const html = document.body.parentElement;
+        
+        console.log(document.body.parentElement === document.body.parentNode);  
+
+        console.log(html.parentElement);
+        console.log(html.parentNode);
+
+        const h2 = document.querySelector('h2');
+        const h2nextSibling = h2.nextElementSibling;
+        h2nextSibling.style.backgroundColor = 'yellow';  
+
+        console.log(h2.previousSibling);
+    </script>
+  </body>
+</html>
