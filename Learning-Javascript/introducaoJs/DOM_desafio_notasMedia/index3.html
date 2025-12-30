@@ -17,6 +17,12 @@
           padding: 20px;
           margin-bottom: 30px;
         }
+        .aproved{
+          background-color: #c8e6c9; /* light green */
+          }
+        .reproved{
+          background-color: #ffcdd2; /* light red */
+        } 
       </style>
     </head>
 
@@ -30,7 +36,7 @@
         </div>
         <h2 class="materialize-red-text text-lighten-2 underlined">Dados de Alunos</h2>
 
-        <table class="striped">
+        <table>
         <thead>
           <tr>
               <th>Nome</th>
@@ -153,24 +159,20 @@
                 { nome: "Luana", notas: [3, 7, 9, 3] },
                 { nome: "Beatriz", notas: [10, 4, 7, 9] },
                 { nome: "Sergio", notas: [4.5, 9.5, 10, 2] }
-                ];
+                ];     
             
           alunos.forEach(aluno =>
           {
-            aluno.media = avarege(aluno.notas[0], aluno.notas[1], aluno.notas[2], aluno.notas[3]);
+            aluno.media = avarege(...aluno.notas);
           });
 
-          const html = alunos.map(aluno => 
-              `<tr>
+          const html = alunos.map(aluno =>  
+              `<tr class ="${aluno.media >= 7 ? 'aproved' : 'reproved'}">
                   <td>${aluno.nome}</td>
-                  <td>${aluno.notas[0]}</td>
-                  <td>${aluno.notas[1]}</td>
-                  <td>${aluno.notas[2]}</td>
-                  <td>${aluno.notas[3]}</td>
-                  <td>${aluno.media}</td>
+                  ${aluno.notas.map (nota => `<td>${nota}</td>`).join("")}
+                  <td>${aluno.media.toFixed(2)}</td>
               </tr>` 
           ).join("");
-          
           document.querySelector("tbody").innerHTML = html;
           
         })();
