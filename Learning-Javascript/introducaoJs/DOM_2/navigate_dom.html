@@ -41,6 +41,12 @@
         const h2nextSibling = h2.nextElementSibling;
         h2nextSibling.style.backgroundColor = 'yellow';  
 
+        const link = document.querySelector("a");
+        const list = document.querySelector("ul ul");
+
+        console.log(link.parentElement.childNodes);
+        console.log(link.parentElement.children);
+
         console.log(h2.previousSibling);
     </script>
   </body>
