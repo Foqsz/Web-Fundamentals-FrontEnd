@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+      <p>teste 1</p>
+      <p>lorem <a href="#" class="ref">Oi</a> .</p>
+      <p>teste 2</p>
+
+      <h2>Lista</h2>
+      <ul>
+        <li>item 1</li>
+        <li>item 2
+            <ul>
+            <li>item 2a</li>
+            <li>item 2b</li>
+            <li>item 2c</li>
+            <li> s</li>
+            </ul>
+        </li>
+        <li>item <a href="#" class="ref">oi</a></li>
+      </ul>
+    </div>
+
+    <script>
+        const title = document.createElement("h1");
+        const atributo = document.createAttribute("id");
+        atributo.value = "titleOne";
+        title.setAttributeNode(atributo);
+
+        title.setAttribute("tittle", "Title Principal");
+        title.setAttribute("style", "color: red;")
+
+        const text = document.createTextNode("Criar nós no DOM");
+        title.appendChild(text);
+
+        title.textContent = "Texto inserido com textContent";
+
+        console.log(title);
+
+        document.querySelector(".container").appendChild(title);
+    </script>
+</body>
+</html>
