@@ -49,7 +49,16 @@
 
         const list = document.querySelector("ul");
 
-        document.querySelector(".container").insertBefore(title2, list);
+        const container = document.querySelector(".container");
+
+        container.insertBefore(title2, list);
+        container.insertBefore(title2, container.firstChild);
+
+        let subLevel = document.querySelector("ul ul");
+        subLevel = subLevel.cloneNode(true);
+        const h2 = document.querySelector("h2");
+
+        container.insertBefore(subLevel, h2.nextElementSibling);
     </script>
 </body>
 </html>
