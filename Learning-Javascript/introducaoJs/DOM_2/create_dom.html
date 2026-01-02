@@ -59,6 +59,14 @@
         const h2 = document.querySelector("h2");
 
         container.insertBefore(subLevel, h2.nextElementSibling);
+
+        const twoParagraph = container.firstElementChild.nextElementSibling.nextSibling;
+        console.log(twoParagraph);  
+
+        const span = document.createElement("span");
+        span.textContent = " - texto do span ";
+
+        twoParagraph.before(span);
     </script>
 </body>
 </html>
