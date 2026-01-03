@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+      .container2{
+        background: #ccc;
+        padding: 15px;
+      }
+      .container2 p{
+        border: 1px solid red;
+        padding: 10px;
+        margin: 15px;
+      }
+    </style>
 </head>
 <body>
+  <h1>teste dom</h1>
+    <div class="container2">
+      <p>Lorem ipsum dolor sit.</p>
+      <p>Lorem ipsum dolor sit.</p>
+      <p>Lorem ipsum dolor sit.</p>
+    </div>
     <div class="container">
       <p>teste 1</p>
       <p>lorem <a href="#" class="ref">Oi</a> .</p>
@@ -67,6 +85,30 @@
         span.textContent = " - texto do span ";
 
         twoParagraph.before(span);
+
+        const container2 = document.querySelector(".container2");
+
+        container2.insertAdjacentHTML("beforebegin", "<b> Texto inserido com insertAdjacentHTML antes do container2 </b>");
+        container2.insertAdjacentHTML("afterbegin", "<b> Texto inserido com insertAdjacentHTML antes do container2 </b>");        
+        container2.insertAdjacentHTML("beforeend", "<b> Texto inserido com insertAdjacentHTML antes do container2 </b>");  
+        container2.insertAdjacentHTML("afterend", "<b> Texto inserido com insertAdjacentHTML antes do container2 </b>");       
+        
+        container2.insertAdjacentText("afterbegin", "<b> Texto inserido com insertAdjacentHTML antes do container2 </b>"); 
+
+        const em = document.createElement("em");
+        em.textContent = "Texto em itálico";
+
+        container2.insertAdjacentElement("beforeend", em);  
+
+        // list.remove();
+        // parentNode.removeChild(list); 
+        list.parentElement.removeChild(list);  
+
+        const parent = document.body;
+        const newFilho = container.querySelector("h1");
+        const oldFilho = document.querySelector("h1");
+        parent.replaceChild(newFilho, oldFilho);
+
     </script>
 </body>
 </html>
