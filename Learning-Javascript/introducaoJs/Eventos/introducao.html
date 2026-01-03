@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Eventos em JavaScript</h1>
+
+    <button id="btn1">Botão 1</button>
+    <button id="btn2" onclick="console.log('click com atributo onclick')">Botão 2</button>
+    <button id="btn3">Botão 3</button>
+
+    <script>
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+        const btn3 = document.getElementById('btn3');
+
+        btn1.onclick = function() {
+            console.log('Clicou no botão 1');
+        };
+
+        function clicou() {
+            console.log('Clicou no botão com função externa');
+        }
+        btn1.onclick = clicou;
+
+        btn2.addEventListener('click', clicou);
+
+        btn2.addEventListener('click', function() {
+            console.log('Clicou no botão 2 com função anônima');
+        }); 
+
+        btn2.onclick = function() {
+            console.log('Outro evento de clique no botão 2');
+        };
+    </script>
+</body>
+</html>
