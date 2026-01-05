@@ -13,6 +13,13 @@
         <button id="btn2" onclick="console.log('click com atributo onclick')">Botão 2</button>
         <button id="btn3">Botão 3</button>
     </div>
+    <hr>
+    <h1>Delegação de Eventos</h1>
+    <div class="container2">
+        <button>Botão 1</button>
+        <button>Botão 2</button>
+        <button>Botão 3</button>
+    </div>
     <script>
         const btn1 = document.getElementById('btn1');
         const btn2 = document.getElementById('btn2');
@@ -49,7 +56,16 @@
         const container = document.querySelector('.container');
         container.addEventListener('click', function() {
             console.log('Clicou na div container');
-        }, false);
+        }, true);
+
+        const container2 = document.querySelector('.container2');
+        const btns = container2.querySelectorAll('.container2 button'); 
+        
+        container2.addEventListener('click', function(event) {
+            if (event.target.tagName === 'BUTTON') {
+                console.log('Clicou no ' + event.target.textContent);
+            }
+        });
     </script>
 </body>
 </html>
