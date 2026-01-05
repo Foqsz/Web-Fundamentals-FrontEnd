@@ -8,10 +8,11 @@
 <body>
     <h1>Eventos em JavaScript</h1>
 
-    <button id="btn1">Botão 1</button>
-    <button id="btn2" onclick="console.log('click com atributo onclick')">Botão 2</button>
-    <button id="btn3">Botão 3</button>
-
+    <div class="container">
+        <button id="btn1">Botão 1</button>
+        <button id="btn2" onclick="console.log('click com atributo onclick')">Botão 2</button>
+        <button id="btn3">Botão 3</button>
+    </div>
     <script>
         const btn1 = document.getElementById('btn1');
         const btn2 = document.getElementById('btn2');
@@ -36,7 +37,19 @@
             console.log('Outro evento de clique no botão 2');
         };
 
-        btn3.addEventListener('click', clicou);
+        btn3.addEventListener('click', function(abx) {
+            console.log('Clicou no botão 3');
+            abx.stopPropagation();
+        }, false);
+
+        document.addEventListener('click', function() {
+            console.log('Clicou em algum lugar do documento');
+        }, false);
+
+        const container = document.querySelector('.container');
+        container.addEventListener('click', function() {
+            console.log('Clicou na div container');
+        }, false);
     </script>
 </body>
 </html>
