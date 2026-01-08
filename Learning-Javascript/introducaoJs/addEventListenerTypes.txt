@@ -1,0 +1,99 @@
+### Mouse
+
+* `click` → clique simples
+* `dblclick` → duplo clique
+* `mousedown` → botão pressionado
+* `mouseup` → botão solto
+* `mousemove` → mover o mouse
+* `mouseenter` → mouse entra no elemento
+* `mouseleave` → mouse sai do elemento
+* `mouseover` → entra (com propagação)
+* `mouseout` → sai (com propagação)
+* `contextmenu` → clique direito
+
+---
+
+### Teclado
+
+* `keydown` → tecla pressionada
+* `keyup` → tecla solta
+* `keypress` → digitação *(obsoleto)*
+
+---
+
+### Formulários / Input
+
+* `input` → valor muda em tempo real
+* `change` → valor confirmado
+* `submit` → enviar formulário
+* `focus` → campo recebe foco
+* `blur` → campo perde foco
+* `reset` → formulário resetado
+* `invalid` → validação falhou
+
+---
+
+### Clipboard
+
+* `copy` → copiar
+* `cut` → recortar
+* `paste` → colar
+
+---
+
+### Touch (mobile)
+
+* `touchstart` → toque iniciado
+* `touchmove` → dedo arrastando
+* `touchend` → toque finalizado
+* `touchcancel` → toque cancelado
+
+---
+
+### Drag & Drop
+
+* `drag` → arrastando
+* `dragstart` → início do arrasto
+* `dragend` → fim do arrasto
+* `dragenter` → entrou na área
+* `dragleave` → saiu da área
+* `dragover` → sobre a área
+* `drop` → soltar item
+
+---
+
+### Janela / Documento
+
+* `load` → tudo carregado
+* `DOMContentLoaded` → HTML carregado
+* `resize` → janela redimensionada
+* `scroll` → rolagem
+* `beforeunload` → antes de sair
+
+---
+
+### Mídia
+
+* `play` → iniciar mídia
+* `pause` → pausar
+* `ended` → terminou
+* `volumechange` → volume alterado
+* `timeupdate` → tempo mudou
+
+---
+
+### Outros
+
+* `wheel` → rolagem do mouse
+* `animationstart` → animação iniciou
+* `animationend` → animação terminou
+* `transitionend` → transição terminou
+
+---
+
+👉 **Resumo prático:**
+
+* **Form** → `change`, `input`, `submit`
+* **Checkbox** → `change`
+* **Teclado** → `keydown` / `keyup`
+* **Mouse** → `click`
