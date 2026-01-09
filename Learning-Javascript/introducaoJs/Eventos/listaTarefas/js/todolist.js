@@ -5,7 +5,7 @@
     const itemInput = document.getElementById("item-input");
     const todoAddForm = document.getElementById("todo-add");
     const ul = document.getElementById("todo-list");
-    // const lis = ul.getElementsByTagName("li");
+    const lis = ul.getElementsByTagName("li");
     const valueNull = "";
 
     let arrayTasks = [
@@ -39,7 +39,7 @@
         deleteButton.className = "fas fa-trash-alt"; 
         deleteButton.setAttribute("data-action", "deleteButton");
 
-        editButton.className = "fa fa-edit";
+        editButton.className = "fas fa-edit";
         editButton.setAttribute("data-action", "editButton");   
 
         containerEdit.className = "editContainer";
@@ -86,8 +86,42 @@
             completed: false});
     };
 
-    function clickedUl(event){
-        console.log(event.target.getAttribute("data-action"));
+    function clickedUl(event){  
+        const dataAction = event.target.getAttribute("data-action");
+
+        if(!dataAction) return;
+
+        let currentLi = event.target;
+        while(currentLi.nodeName !== "LI")
+        {
+            currentLi = currentLi.parentElement;    
+        }
+        console.log(currentLi);
+
+        const currentLiIndex = [...lis].indexOf(currentLi);
+        console.log(currentLiIndex);
+
+        const actions = {
+            editButton: function(){
+                console.log("editar");
+            },
+            deleteButton: function(){
+                console.log("deletar");
+            },
+            checkButton: function(){
+                console.log("check");
+            },
+            containerEditButton: function(){
+                console.log("salvar edição");
+            },
+            containerCancelButton: function(){
+                console.log("cancelar edição");
+            }
+        }
+
+        if(actions[dataAction]){
+            actions[dataAction]();  
+        }
     };
 
     todoAddForm.addEventListener("submit", function(event){
