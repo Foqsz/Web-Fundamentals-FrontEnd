@@ -13,14 +13,13 @@
             name: "Task 1",
             createdAt: Date.now(),
             completed: false
+        },
+        {
+            name: "Task 2",
+            createdAt: Date.now(),
+            completed: false
         }
     ];
-
-    function addEventLi(li){
-        li.addEventListener("click", function(){
-            console.log(this);  
-        });
-    };
 
     function generateLiTask(obj){
         const li = document.createElement("li"); 
@@ -35,10 +34,13 @@
 
         checkButton.className = "button-check";
         checkButton.innerHTML = `<i class="fas fa-check displayNone"></i>`;
+        checkButton.setAttribute("data-action", "checkButton");    
 
         deleteButton.className = "fas fa-trash-alt"; 
+        deleteButton.setAttribute("data-action", "deleteButton");
 
         editButton.className = "fa fa-edit";
+        editButton.setAttribute("data-action", "editButton");   
 
         containerEdit.className = "editContainer";
 
@@ -47,9 +49,11 @@
 
         containerEditButton.className = "editButton";
         containerEditButton.textContent = "Edit";
+        containerEditButton.setAttribute("data-action", "containerEditButton"); 
 
         containerCancelButton.className = "cancelButton";
         containerCancelButton.textContent = "Cancel";
+        containerCancelButton.setAttribute("data-action", "containerCancelButton"); 
 
         li.className = "todo-item";
         p.className = "task-name";
@@ -64,8 +68,6 @@
         containerEdit.appendChild(containerCancelButton);  
         li.appendChild(containerEdit);
         li.appendChild(deleteButton); 
-
-        addEventLi(li);
 
         return li;
     }
@@ -84,6 +86,10 @@
             completed: false});
     };
 
+    function clickedUl(event){
+        console.log(event.target.getAttribute("data-action"));
+    };
+
     todoAddForm.addEventListener("submit", function(event){
         event.preventDefault();
         console.log(itemInput.value);
@@ -96,6 +102,8 @@
         itemInput.value = valueNull;        
         itemInput.focus();
     });
+    
+    ul.addEventListener("click", clickedUl);
 
     renderTasks();
 })();
