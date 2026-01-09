@@ -23,13 +23,28 @@
     };
 
     function generateLiTask(obj){
-        const li = document.createElement("li");     
-        li.className = "todo-item";
+        const li = document.createElement("li"); 
         const p = document.createElement("p");
+        const checkButton = document.createElement("button");
+        const editButton = document.createElement("i");
+        const deleteButton = document.createElement("i");
+
+        checkButton.className = "button-check";
+        checkButton.innerHTML = `<i class="fas fa-check displayNone"></i>`;
+
+        deleteButton.className = "fas fa-trash-alt"; 
+
+        editButton.className = "fa fa-edit";
+
+        li.className = "todo-item";
         p.className = "task-name";
         p.textContent = obj.name;
-        li.appendChild(p); // Adicionar o parágrafo ao item da lista
         ul.appendChild(li); // Adicionar o item da lista à lista não ordenada
+
+        li.appendChild(checkButton); // coluna 1
+        li.appendChild(p);           // coluna 2 (texto)
+        li.appendChild(editButton);  // coluna 3
+        li.appendChild(deleteButton);// coluna 4
 
         addEventLi(li);
 
