@@ -28,6 +28,10 @@
         const checkButton = document.createElement("button");
         const editButton = document.createElement("i");
         const deleteButton = document.createElement("i");
+        const containerEdit = document.createElement("div");
+        const inputEdit = document.createElement("input");
+        const containerEditButton = document.createElement("button");
+        const containerCancelButton = document.createElement("button");
 
         checkButton.className = "button-check";
         checkButton.innerHTML = `<i class="fas fa-check displayNone"></i>`;
@@ -36,15 +40,30 @@
 
         editButton.className = "fa fa-edit";
 
+        containerEdit.className = "editContainer";
+
+        inputEdit.setAttribute("type", "text");
+        inputEdit.className = "editInput"; 
+
+        containerEditButton.className = "editButton";
+        containerEditButton.textContent = "Edit";
+
+        containerCancelButton.className = "cancelButton";
+        containerCancelButton.textContent = "Cancel";
+
         li.className = "todo-item";
         p.className = "task-name";
         p.textContent = obj.name;
         ul.appendChild(li); // Adicionar o item da lista à lista não ordenada
 
-        li.appendChild(checkButton); // coluna 1
-        li.appendChild(p);           // coluna 2 (texto)
-        li.appendChild(editButton);  // coluna 3
-        li.appendChild(deleteButton);// coluna 4
+        li.appendChild(checkButton);  
+        li.appendChild(p);            
+        li.appendChild(editButton);  
+        containerEdit.appendChild(inputEdit);  
+        containerEdit.appendChild(containerEditButton);  
+        containerEdit.appendChild(containerCancelButton);  
+        li.appendChild(containerEdit);
+        li.appendChild(deleteButton); 
 
         addEventLi(li);
 
