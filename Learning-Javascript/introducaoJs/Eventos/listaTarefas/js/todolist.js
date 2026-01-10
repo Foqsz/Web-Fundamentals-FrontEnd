@@ -96,17 +96,16 @@
         {
             currentLi = currentLi.parentElement;    
         }
-        console.log(currentLi);
 
         const currentLiIndex = [...lis].indexOf(currentLi);
-        console.log(currentLiIndex);
 
         const actions = {
             editButton: function(){
                 console.log("editar");
             },
             deleteButton: function(){
-                console.log("deletar");
+                arrayTasks.splice(currentLiIndex, 1);
+                renderTasks();
             },
             checkButton: function(){
                 console.log("check");
