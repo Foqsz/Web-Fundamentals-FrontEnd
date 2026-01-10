@@ -45,7 +45,8 @@
         containerEdit.className = "editContainer";
 
         inputEdit.setAttribute("type", "text");
-        inputEdit.className = "editInput"; 
+        inputEdit.className = "editInput";
+        inputEdit.value = obj.name;
 
         containerEditButton.className = "editButton";
         containerEditButton.textContent = "Edit";
@@ -101,20 +102,29 @@
 
         const actions = {
             editButton: function(){
-                console.log("editar");
+                const editContainer = currentLi.querySelector(".editContainer");
+
+                [...ul.querySelectorAll(".editContainer")].forEach(container => {
+                    container.removeAttribute("style");
+                })
+
+                editContainer.style.display = "flex";
             },
             deleteButton: function(){
                 arrayTasks.splice(currentLiIndex, 1);
                 renderTasks();
             },
             checkButton: function(){
-                console.log("check");
+                arrayTasks[currentLiIndex].completed = !arrayTasks[currentLiIndex].completed;
+                renderTasks();
             },
             containerEditButton: function(){
-                console.log("salvar edição");
+                arrayTasks[currentLiIndex].name = currentLi.querySelector(".editInput").value;
+                renderTasks();
             },
             containerCancelButton: function(){
-                console.log("cancelar edição");
+                const editContainer = currentLi.querySelector(".editContainer");
+                editContainer.style.display = "none";
             }
         }
 
