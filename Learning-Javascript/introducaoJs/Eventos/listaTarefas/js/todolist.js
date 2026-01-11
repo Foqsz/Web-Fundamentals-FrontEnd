@@ -8,18 +8,40 @@
     const lis = ul.getElementsByTagName("li");
     const valueNull = "";
 
-    let arrayTasks = [
-        {
-            name: "Task 1",
-            createdAt: Date.now(),
-            completed: false
-        },
-        {
-            name: "Task 2",
-            createdAt: Date.now(),
-            completed: false
+    let arrayTasks = getSavedData();
+
+    function getSavedData() {
+        let tasksData = localStorage.getItem("tasks");
+    
+        try {
+            tasksData = JSON.parse(tasksData);
+        } catch (error) {
+            // Caso ocorra erro ao fazer o parse, inicializa como null
+            tasksData = null;
         }
-    ];
+    
+        // Verifica se tasksData é um array válido
+        return Array.isArray(tasksData) && tasksData.length
+            ? tasksData
+            : [
+                {
+                    name: "task 1",
+                    createAt: Date.now(),
+                    completed: true,
+                },
+                {
+                    name: "task 2",
+                    createAt: Date.now(),
+                    completed: false,
+                },
+            ];
+    }
+
+    function setNewData(){
+        localStorage.setItem("tasks", JSON.stringify(arrayTasks));
+    }
+
+    setNewData();
 
     function generateLiTask(obj){
         const li = document.createElement("li"); 
@@ -33,7 +55,8 @@
         const containerCancelButton = document.createElement("button");
 
         checkButton.className = "button-check";
-        checkButton.innerHTML = `<i class="fas fa-check displayNone"></i>`;
+        checkButton.innerHTML = `
+            <i class="fas fa-check ${obj.completed ? "" : "displayNone"}" data-action="checkButton"></i>`;
         checkButton.setAttribute("data-action", "checkButton");    
 
         deleteButton.className = "fas fa-trash-alt"; 
@@ -84,7 +107,10 @@
         arrayTasks.push({
             name: task  ,
             createdAt: Date.now(),
-            completed: false});
+            completed: false}
+        );
+
+        setNewData();    
     };
 
     function clickedUl(event){  
@@ -113,18 +139,30 @@
             deleteButton: function(){
                 arrayTasks.splice(currentLiIndex, 1);
                 renderTasks();
+                setNewData();
             },
             checkButton: function(){
                 arrayTasks[currentLiIndex].completed = !arrayTasks[currentLiIndex].completed;
+
+                if(arrayTasks[currentLiIndex].completed){
+                    currentLi.querySelector(".fa-check").classList.remove("displayNone");
+                }else{
+                    currentLi.querySelector(".fa-check").classList.add("displayNone");
+                }
+
                 renderTasks();
+                setNewData();
             },
             containerEditButton: function(){
                 arrayTasks[currentLiIndex].name = currentLi.querySelector(".editInput").value;
                 renderTasks();
+                setNewData();
             },
             containerCancelButton: function(){
                 const editContainer = currentLi.querySelector(".editContainer");
-                editContainer.style.display = "none";
+                
+                currentLi.querySelector(".editInput").value = arrayTasks[currentLiIndex].name;
+                editContainer.removeAttribute("style");
             }
         }
 
