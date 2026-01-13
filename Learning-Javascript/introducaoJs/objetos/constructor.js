@@ -1,4 +1,5 @@
 function Task(name){
+    "use strict";
     let _name = name;
     // this.name = name;
     this.createdAt = new Date();
@@ -15,8 +16,11 @@ function Task(name){
 const task1 = new Task("Task 10");
 task1.changeName("New Task 10");
 
-console.log(task1);
-console.log(task1.getName());
+// console.log(task1);
+// console.log(task1.getName());
 
 const task2 = new Task("Task 20");
 console.log(task2.getName());
+
+const task3 = new Task("Task 30");
+console.log(task3); // undefined
