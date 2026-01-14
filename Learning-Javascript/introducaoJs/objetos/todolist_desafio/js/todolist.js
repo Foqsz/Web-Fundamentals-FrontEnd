@@ -4,15 +4,23 @@
 
 
 	function Task(name, completed, createdAt, updatedAt){
-		// crie uma funcao construtora chamada Task. 
-        // essa funcao recebe por parametro obrigatório o nome da tarefa
-        // também recebe tres parametros opcionais (completed, createdAt, updatedAt)
-        // o objeto retornado por essa funcao deve ter quatro propriedades:
-        //  - name - string - obrigatório, 
-        //  - completed - boolean - opcional, false é o default, 
-        //  - createdAt - timestamp - opcional, timestamp atual é o valor default) 
-        //  - updatedAt - timestamp - opcional, null é o valor default
-        // o objeto retornado por essa funcao deve ter um método chamado toggleDone, que deve inverter o boolean completed
+
+        if(!name)
+            throw new Error("Task precisa de um nome válido")
+
+        let _name = name;
+        // this.name = name;
+        this.completed = completed || false;
+        this.createdAt = createdAt || Date.now();
+        this.updatedAt = updatedAt || null;
+        this.toggleDone = function(){
+            this.completed = !this.completed;
+        }
+        this.getName = () => _name;
+        this.setName = function(newName){
+            _name = newName;
+            this.updatedAt = Date.now();
+        }
 	}
 
 	let arrTasks = [
@@ -38,9 +46,7 @@
 
     // a partir de um array de objetos literais, crie um array contendo instancias de Tasks. 
     // Essa array deve chamar arrInstancesTasks
-	// const arrInstancesTasks = DESCOMENTE ESSA LINHA E RESOLVA O ENUNCIADO
-
-
+	const arrInstancesTasks = arrTasks.map(task => new Task(task.name, task.completed, task.createdAt, task.updatedAt))
 
     //ARMAZENAR O DOM EM VARIAVEIS
     const itemInput = document.getElementById("item-input")
@@ -67,7 +73,7 @@
         li.appendChild(checkButton)
 
         p.className = "task-name"
-        p.textContent = obj.name
+        p.textContent = obj.getName()
         li.appendChild(p)
 
         editButton.className = "fas fa-edit"
@@ -80,7 +86,7 @@
         const inputEdit = document.createElement("input")
         inputEdit.setAttribute("type", "text")
         inputEdit.className = "editInput"
-        inputEdit.value = obj.name
+        inputEdit.value = obj.getName()
 
         containerEdit.appendChild(inputEdit)
         const containerEditButton = document.createElement("button")
@@ -113,7 +119,11 @@
     }
 
     function addTask(task) {
-        // adicione uma nova instancia de Task
+        if(!task)
+            throw new Error("Task não pode ser vazia")
+
+        const newTask = new Task(task)
+        arrInstancesTasks.push(newTask)
         renderTasks()
 
     }
@@ -148,16 +158,15 @@
             },
             containerEditButton: function () {
                 const val = currentLi.querySelector(".editInput").value
-                arrInstancesTasks[currentLiIndex].name = val
+                arrInstancesTasks[currentLiIndex].setName(val)
                 renderTasks()
             },
             containerCancelButton: function () {
                 currentLi.querySelector(".editContainer").removeAttribute("style")
-                currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].name
+                currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].getName()
             },
             checkButton: function () {
-
-                // DEVE USAR O MÉTODO toggleDone do objeto correto
+                arrInstancesTasks[currentLiIndex].toggleDone()
 
 	            renderTasks()
             }
