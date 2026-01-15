@@ -35,3 +35,7 @@ function mascararTelefone(numero) {
     let telefoneMascarado = parteMascarada + parteVisivel;
     console.log(telefoneMascarado);
 }
+
+let str4 = "Hoje é Quinta-Feira";
+console.log(str4.startsWith("Hoje")); // true
+console.log(str4.endsWith("Feiro")); // false
