@@ -39,3 +39,7 @@ function mascararTelefone(numero) {
 let str4 = "Hoje é Quinta-Feira";
 console.log(str4.startsWith("Hoje")); // true
 console.log(str4.endsWith("Feiro")); // false
+
+let str5 = "abcdefgh";
+console.log(str5.charAt(2)); // "c"
+console.log(str5.charCodeAt(2)); // 99
